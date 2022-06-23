@@ -10,7 +10,7 @@ rebuild:
 # Wake up docker containers
 start:
 	docker-compose up -d --remove-orphans
-# make composer-install
+# make composer cmd="install"
 # make migrate
 
 # Restart all containers
