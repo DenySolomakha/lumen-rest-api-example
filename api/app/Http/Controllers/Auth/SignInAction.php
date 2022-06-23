@@ -7,7 +7,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-final class SignIn extends Controller
+final class SignInAction extends Controller
 {
     public function __invoke(Request $request)
     {
