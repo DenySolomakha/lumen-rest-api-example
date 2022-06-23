@@ -1,0 +1,66 @@
+version: '3.9'
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: .docker/nginx/Dockerfile
+    container_name: example_company_nginx
+    volumes:
+      - ./:/var/www
+      - ./.docker/nginx/logs:/var/log/nginx
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+
+  api:
+    build:
+      context: .
+      dockerfile: .docker/php/Dockerfile
+    container_name: example_company_php
+    volumes:
+      - ./api:/var/www/example-company.com
+    environment:
+      # If you down want to use xDebug, set remote_enable=0
+      XDEBUG_CONFIG: "remote_enable=0"
+      PHP_IDE_CONFIG: "serverName=Docker"
+    depends_on:
+      - postgres
+      - redis
+
+  # PostgreSQL database container
+  postgres:
+    build:
+      context: .
+      dockerfile: .docker/postgresql/Dockerfile
+    container_name: example_company_pgsql
+    volumes:
+      # Database volume
+      - database:/var/lib/postgresql/data
+      # Temp volume to allow using dumps
+      - ./.docker/postgresql/dumps/:/tmp/
+      - ./api:/example-company.com
+    ports:
+      - "54329:5432"
+    environment:
+      LC_ALL: C.UTF-8
+      POSTGRES_DB: example_company
+      POSTGRES_USER: example_company
+      POSTGRES_PASSWORD: example_company
+    restart: always
+
+  # Redis container
+  redis:
+    image: redis:latest
+    container_name: example_company_redis
+    volumes:
+      - redis:/data
+    ports:
+      - "63791:6379"
+
+volumes:
+  database:
+    driver: local
+  redis:
+    driver: local
