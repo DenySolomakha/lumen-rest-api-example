@@ -1,0 +1,7 @@
+# phpstorm project files
+.idea
+api/.env
+docker-compose.override.yml
+
+/**/.DS_Store
+/**/__MACOSX
