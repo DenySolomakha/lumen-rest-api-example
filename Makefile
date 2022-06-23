@@ -29,3 +29,20 @@ status:
 # Run terminal of the php container
 exec:
 	docker-compose exec api /bin/sh
+
+# Run composer commands
+composer:
+	docker-compose up -d api
+    ifneq ($(cmd),)
+	    docker-compose exec -T api /bin/sh -c "composer $(cmd)"
+    else
+	    docker-compose exec -T api /bin/sh -c "composer"
+    endif
+
+# Run artisan commands
+artisan:
+    ifneq ($(cmd),)
+		docker-compose exec -T api php artisan $(cmd)
+    else
+		docker-compose exec -T api php artisan
+    endif
