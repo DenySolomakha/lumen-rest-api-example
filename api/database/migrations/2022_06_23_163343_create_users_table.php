@@ -15,11 +15,19 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
+            $table->string('username')->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->timestampsTz();
+        });
+
+        Schema::create('languages', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', 50);
+            $table->string('code', 2)->unique();
+            $table->boolean('is_active')->default(false);
             $table->timestampsTz();
         });
     }
@@ -32,5 +40,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('user');
+        Schema::dropIfExists('languages');
     }
 };
