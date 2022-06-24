@@ -19,7 +19,6 @@ class Language extends Model
     use HasFactory;
 
     public const UK = 'uk';
-    public const RU = 'ru';
     public const EN = 'en';
 
     /**
@@ -44,4 +43,15 @@ class Language extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    /**
+     * @return string[]
+     */
+    public static function getSupportedLanguages(): array
+    {
+        return [
+            self::UK => 'Українська',
+            self::EN => 'English',
+        ];
+    }
 }
