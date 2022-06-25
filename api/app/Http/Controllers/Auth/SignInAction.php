@@ -34,6 +34,6 @@ final class SignInAction extends Controller
         $user = auth()->user();
         $user->token = $token;
 
-        return new UserResource(auth()->user());
+        return new UserResource($user);
     }
 }

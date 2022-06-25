@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Company\Company;
-use App\Models\Language;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -30,8 +29,8 @@ return new class () extends Migration {
             $table->string('language', 2);
             $table->string('title');
             $table->text('description');
-            $table->string('meta_title');
-            $table->string('meta_description');
+            $table->string('meta_title')->nullable();
+            $table->string('meta_description')->nullable();
             $table->timestampsTz();
 
             $table->foreign('language')

@@ -40,7 +40,7 @@ class ResetPasswordAction extends Controller
         );
 
         return $status === Password::PASSWORD_RESET ?
-            response()->json(['data' => 'Success.']) :
-            response()->json(['data' => 'Error.'], Response::HTTP_UNPROCESSABLE_ENTITY);
+            response()->json(['data' => 'Reset password success.']) :
+            response()->json(['data' => 'Reset password error.'], Response::HTTP_UNPROCESSABLE_ENTITY);
     }
 }

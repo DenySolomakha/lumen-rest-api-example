@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
 use App\Models\Company\Company;
@@ -14,6 +16,8 @@ use Illuminate\Database\Seeder;
 
 class UserTableSeeder extends Seeder
 {
+    use WithoutModelEvents;
+
     /**
      * Run the database seeds.
      *
@@ -35,7 +39,7 @@ class UserTableSeeder extends Seeder
     private function makeCompany(): Factory
     {
         return Company::factory()
-            ->count(random_int(4, 7))
+            ->count(random_int(5, 12))
             ->has($this->makeCompanyTranslations(), 'translations');
     }
 

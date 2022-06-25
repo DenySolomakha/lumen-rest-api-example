@@ -21,15 +21,6 @@ class AppServiceProvider extends ServiceProvider
     /**
      * @return void
      */
-    public function boot(): void
-    {
-        JsonResource::withoutWrapping();
-    }
-
-
-    /**
-     * @return void
-     */
     protected function registerPasswordBroker(): void
     {
         $this->app->singleton('auth.password', function ($app) {

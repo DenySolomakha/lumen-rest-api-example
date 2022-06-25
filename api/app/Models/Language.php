@@ -10,6 +10,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * @property string $code
+ * @property string $name
+ * @property bool $is_active
  * @method static LanguageFactory factory(...$parameters)
  * @method static Builder|Language first($columns = [])
  * @method static Builder|Language whereCode($value)
@@ -22,6 +25,8 @@ class Language extends Model
     public const EN = 'en';
 
     protected $primaryKey = 'code';
+
+    protected $keyType = 'string';
 
     /**
      * @var string[]
@@ -45,6 +50,14 @@ class Language extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    /**
+     * @return static|Builder
+     */
+    public static function query(): Builder
+    {
+        return parent::query();
+    }
 
     /**
      * @return string[]

@@ -24,6 +24,7 @@ class CompanyFactory extends Factory
             'user_id' => User::factory(),
             'number_of_employees' => $this->faker->numberBetween(5, 3500),
             'slug' => $this->faker->slug,
+            'is_active' => $this->faker->boolean,
         ];
     }
 }

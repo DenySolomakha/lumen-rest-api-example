@@ -9,6 +9,10 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class CompanyResource extends JsonResource
 {
+    /**
+     * @param $request
+     * @return array
+     */
     public function toArray($request): array
     {
         /** @var Company $this */

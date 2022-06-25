@@ -21,6 +21,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $updated_at
  * @method static CompanyFactory factory(...$parameters)
  * @method Builder|self filterByUser(string|int|User $user)
+ * @method Builder|self isActive()
  */
 class Company extends Model
 {
@@ -61,6 +62,17 @@ class Company extends Model
     }
 
     /**
+     * @param User $user
+     * @return $this
+     */
+    public function withUser(User $user): self
+    {
+        $this->user_id = $user->id;
+
+        return $this;
+    }
+
+    /**
      * @return BelongsTo
      */
     public function user(): BelongsTo
@@ -74,6 +86,15 @@ class Company extends Model
     public function translations(): HasMany
     {
         return $this->hasMany(CompanyTranslation::class);
+    }
+
+    /**
+     * @param Builder $builder
+     * @return Builder
+     */
+    protected function scopeIsActive(Builder $builder): Builder
+    {
+        return $builder->where('is_active', true);
     }
 
     /**

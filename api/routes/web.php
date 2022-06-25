@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\SignInAction;
 use App\Http\Controllers\Auth\SignOutAction;
 use App\Http\Controllers\Auth\SignUpAction;
 use App\Http\Controllers\Company\CompanyAction;
+use App\Http\Controllers\Company\CreateCompanyAction;
 use Illuminate\Support\Str;
 use Laravel\Lumen\Routing\Router;
 
@@ -26,9 +27,10 @@ $router->group(['prefix' => 'api'], function (Router $router): void {
 
     // Forgot password
     $router->post('forgot-password', ['as' => 'forgot.password', 'uses' => ForgotPasswordAction::class]);
-    $router->patch('reset-password', ['as' => 'reset.password', 'uses' => ResetPasswordAction::class]);
+    $router->patch('reset-password', ['as' => 'password.reset', 'uses' => ResetPasswordAction::class]);
 
     $router->group(['middleware' => 'auth'], function (Router $router): void {
         $router->get('users/companies', ['as' => 'users.companies', 'uses' => CompanyAction::class]);
+        $router->post('users/companies', ['as' => 'create.users.companies', 'uses' => CreateCompanyAction::class]);
     });
 });
