@@ -6,7 +6,10 @@
     "type": "project",
     "require": {
         "php": "^8.0",
-        "laravel/lumen-framework": "^9.0"
+        "illuminate/mail": "^9.18",
+        "illuminate/notifications": "^9.18",
+        "laravel/lumen-framework": "^9.0",
+        "php-open-source-saver/jwt-auth": "^1.4"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
