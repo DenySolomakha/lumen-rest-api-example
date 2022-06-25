@@ -24,11 +24,12 @@ return new class extends Migration
         });
 
         Schema::create('languages', function (Blueprint $table) {
-            $table->id();
+            $table->string('code', 2)->primary();
             $table->string('name', 50);
-            $table->string('code', 2)->unique();
             $table->boolean('is_active')->default(false);
             $table->timestampsTz();
+
+            $table->index(['code']);
         });
 
         Schema::create('password_resets', function (Blueprint $table) {
