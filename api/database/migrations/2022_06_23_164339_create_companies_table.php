@@ -28,14 +28,20 @@ return new class extends Migration
         Schema::create('company_translations', static function (Blueprint $table): void {
             $table->id();
             $table->foreignIdFor(Company::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Language::class)->constrained()->cascadeOnDelete();
+            $table->string('language', 2);
             $table->string('title');
             $table->text('description');
             $table->string('meta_title');
             $table->string('meta_description');
             $table->timestampsTz();
 
-            $table->unique(['company_id', 'language_id']);
+            $table->foreign('language')
+                ->references('code')
+                ->on('languages')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+
+            $table->unique(['company_id', 'language']);
         });
     }
 
