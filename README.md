@@ -6,7 +6,7 @@ Local development start
   `make bootstrap`
 
 * **Start** / **Stop** / **Restart** application:
-  `make start` / `make stop` / `make resrtart`
+  `make start` / `make stop` / `make restart`
 
 * Use command composer:
   `make composer cmd="any composer command"`
