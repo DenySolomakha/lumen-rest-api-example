@@ -4,7 +4,9 @@ namespace Database\Seeders;
 
 use App\Models\Company\Company;
 use App\Models\Company\CompanyTranslation;
+use App\Models\Language;
 use App\Models\User;
+use Exception;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
@@ -15,6 +17,7 @@ class UserTableSeeder extends Seeder
      * Run the database seeds.
      *
      * @return void
+     * @throws Exception
      */
     public function run():void
     {
@@ -22,13 +25,13 @@ class UserTableSeeder extends Seeder
             ->count(5)
             ->has(
                 Company::factory()
-                    ->count(3)
+                    ->count(random_int(4, 7))
                     ->has(
                         CompanyTranslation::factory()
                             ->count(2)
                             ->state(new Sequence(
-                                    ['language_id' => 1],
-                                    ['language_id' => 2],
+                                    ['language' => Language::EN],
+                                    ['language' => Language::UK],
                                 )
                             ),
                         'translations'),
