@@ -23,7 +23,7 @@ class CompanyTranslationFactory extends Factory
     {
         return [
             'company_id' => Company::factory(),
-            'language_id' => Language::factory(),
+            'language' => Language::factory(),
             'title' => $this->faker->company(),
             'description' => $this->faker->realText(700),
             'meta_title' => sprintf('%s | %s', $this->faker->company(), env('APP_NAME')),
