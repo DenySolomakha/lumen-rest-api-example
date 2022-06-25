@@ -30,6 +30,21 @@ return new class extends Migration
             $table->boolean('is_active')->default(false);
             $table->timestampsTz();
         });
+
+        Schema::create('password_resets', function (Blueprint $table) {
+            $table->string('email')->index();
+            $table->string('token');
+            $table->timestampTz('created_at')->nullable();
+        });
+
+        Schema::create('notifications', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('type');
+            $table->morphs('notifiable');
+            $table->text('data');
+            $table->timestamp('read_at')->nullable();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -41,5 +56,7 @@ return new class extends Migration
     {
         Schema::dropIfExists('user');
         Schema::dropIfExists('languages');
+        Schema::dropIfExists('password_resets');
+        Schema::dropIfExists('notifications');
     }
 };
