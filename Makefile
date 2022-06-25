@@ -1,3 +1,13 @@
+# Only first start application!!!
+bootstrap:
+	cp ./api/.env.example ./api/.env
+	cp docker-compose.override.example.yml docker-compose.override.yml
+	make build
+	make start
+	make chmod-permissions
+	make artsan cmd="jwt:secret"
+	make artisan cmd="migrate:fresh --seed"
+
 # Build and up docker containers
 build:
 	docker-compose build
@@ -10,8 +20,8 @@ rebuild:
 # Wake up docker containers
 start:
 	docker-compose up -d --remove-orphans
-# make composer cmd="install"
-# make migrate
+	make composer cmd="install"
+	make artisan cmd="migrate"
 
 # Restart all containers
 restart:
@@ -46,3 +56,15 @@ artisan:
     else
 		docker-compose exec -T api php artisan
     endif
+
+# Run code style fix
+code-style-fix:
+	make artisan cmd="fixer:fix --diff"
+
+# Run code style check
+code-style-check:
+	make artisan cmd="fixer:fix  --verbose --show-progress=dots --dry-run"
+
+# Set permissions on storage folder
+chmod-permissions:
+	docker-compose exec -T --user root api chmod 777 -R storage/
