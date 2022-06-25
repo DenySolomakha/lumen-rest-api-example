@@ -24,7 +24,7 @@ final class SignInAction extends Controller
     {
         $this->validateRequest($request);
 
-        if(!$token = auth()->attempt($request->only('email', 'password'))) {
+        if (!$token = auth()->attempt($request->only('email', 'password'))) {
             return response()->json([
                 'data' => 'Invalid credentials.'
             ], Response::HTTP_UNAUTHORIZED);

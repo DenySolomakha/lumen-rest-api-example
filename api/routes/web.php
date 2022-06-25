@@ -16,7 +16,7 @@ $router->get('/', function () use ($router): string {
 
 $router->group(['prefix' => 'api'], function (Router $router): void {
     // Generate random string for application key
-    $router->get('appKey', fn ():string => Str::random(32));
+    $router->get('appKey', fn (): string => Str::random(32));
 
     // Authentication
     $router->post('signUp', ['as' => 'signUp', 'uses' => SignUpAction::class]);

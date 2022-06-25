@@ -20,7 +20,6 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordInterface;
 use Laravel\Lumen\Auth\Authorizable;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
-
 /**
  * @property int $id
  * @property string $username
@@ -34,7 +33,11 @@ use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
  */
 class User extends Model implements AuthenticatableContract, AuthorizableContract, JWTSubject, CanResetPasswordInterface
 {
-    use Authenticatable, Authorizable, HasFactory, CanResetPasswordTrait, Notifiable;
+    use Authenticatable;
+    use Authorizable;
+    use HasFactory;
+    use CanResetPasswordTrait;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.

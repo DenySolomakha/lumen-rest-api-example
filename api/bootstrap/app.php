@@ -64,6 +64,7 @@ $app->singleton(
 $app->configure('app');
 $app->configure('jwt');
 $app->configure('mail');
+$app->configure('fixer');
 
 /*
 |--------------------------------------------------------------------------
@@ -101,6 +102,7 @@ $app->register(PHPOpenSourceSaver\JWTAuth\Providers\LumenServiceProvider::class)
 $app->register(Illuminate\Notifications\NotificationServiceProvider::class);
 $app->register(Illuminate\Mail\MailServiceProvider::class);
 $app->register(Illuminate\Auth\Passwords\PasswordResetServiceProvider::class);
+$app->register(STS\Fixer\FixerServiceProvider::class);
 
 $app->alias('mail.manager', Illuminate\Mail\MailManager::class);
 $app->alias('mail.manager', Illuminate\Contracts\Mail\Factory::class);
