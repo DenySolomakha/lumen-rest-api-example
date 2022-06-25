@@ -21,6 +21,8 @@ class Language extends Model
     public const UK = 'uk';
     public const EN = 'en';
 
+    protected $primaryKey = 'code';
+
     /**
      * @var string[]
      */
