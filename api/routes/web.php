@@ -5,6 +5,7 @@
 use App\Http\Controllers\Auth\ForgotPasswordAction;
 use App\Http\Controllers\Auth\ResetPasswordAction;
 use App\Http\Controllers\Auth\SignInAction;
+use App\Http\Controllers\Auth\SignOutAction;
 use App\Http\Controllers\Auth\SignUpAction;
 use App\Http\Controllers\Company\CompanyAction;
 use Illuminate\Support\Str;
@@ -21,6 +22,7 @@ $router->group(['prefix' => 'api'], function (Router $router): void {
     // Authentication
     $router->post('signUp', ['as' => 'signUp', 'uses' => SignUpAction::class]);
     $router->post('signIn', ['as' => 'signIn', 'uses' => SignInAction::class]);
+    $router->post('signOut', ['as' => 'signOut', 'uses' => SignOutAction::class]);
 
     // Forgot password
     $router->post('forgot-password', ['as' => 'forgot.password', 'uses' => ForgotPasswordAction::class]);
