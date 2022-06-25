@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Auth\Passwords\PasswordBrokerManager;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,6 +16,14 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerPasswordBroker();
+    }
+
+    /**
+     * @return void
+     */
+    public function boot(): void
+    {
+        JsonResource::withoutWrapping();
     }
 
 
