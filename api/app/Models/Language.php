@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property string $code
  * @property string $name
- * @property bool $is_active
  * @method static LanguageFactory factory(...$parameters)
  * @method static Builder|Language first($columns = [])
  * @method static Builder|Language whereCode($value)
@@ -34,7 +33,6 @@ class Language extends Model
     protected $fillable = [
         'name',
         'code',
-        'is_active',
     ];
 
     /**

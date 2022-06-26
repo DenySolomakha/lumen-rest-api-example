@@ -39,7 +39,7 @@ final class CompanyService
 
         $company->translations()->saveMany($translations);
 
-        return $company::query()->filterByUser($user)->firstOrFail();
+        return Company::query()->filterByIdentifier($company->id)->isActive()->firstOrFail();
     }
 
     /**

@@ -25,7 +25,6 @@ return new class () extends Migration {
         Schema::create('languages', function (Blueprint $table) {
             $table->string('code', 2)->primary();
             $table->string('name', 50);
-            $table->boolean('is_active')->default(false);
             $table->timestampsTz();
 
             $table->index(['code']);

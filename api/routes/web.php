@@ -29,7 +29,7 @@ $router->group(['prefix' => 'api'], function (Router $router): void {
     $router->post('forgot-password', ['as' => 'forgot.password', 'uses' => ForgotPasswordAction::class]);
     $router->patch('reset-password', ['as' => 'password.reset', 'uses' => ResetPasswordAction::class]);
 
-    $router->group(['middleware' => 'auth'], function (Router $router): void {
+    $router->group(['middleware' => 'auth:api'], function (Router $router): void {
         $router->get('users/companies', ['as' => 'users.companies', 'uses' => CompanyAction::class]);
         $router->post('users/companies', ['as' => 'create.users.companies', 'uses' => CreateCompanyAction::class]);
     });

@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Company;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Company\CompanyResource;
+use App\Http\Validators\Company\CreateCompanyValidator;
 use App\Models\User;
 use App\Services\Company\CompanyService;
 use Illuminate\Http\Request;
@@ -14,6 +15,8 @@ use Throwable;
 
 final class CreateCompanyAction extends Controller
 {
+    use CreateCompanyValidator;
+
     /**
      * @param CompanyService $companyService
      */
@@ -28,6 +31,8 @@ final class CreateCompanyAction extends Controller
      */
     public function __invoke(Request $request): JsonResource
     {
+        $this->validateRequest($request);
+
         /** @var User $user */
         $user = auth()->user();
 

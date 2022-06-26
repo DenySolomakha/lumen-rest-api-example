@@ -8,8 +8,10 @@
         "php": "^8.0",
         "illuminate/mail": "^9.18",
         "illuminate/notifications": "^9.18",
+        "illuminate/redis": "^9.18",
         "laravel/lumen-framework": "^9.0",
         "php-open-source-saver/jwt-auth": "^1.4",
+        "predis/predis": "^2.0",
         "stechstudio/laravel-php-cs-fixer": "^3.1"
     },
     "require-dev": {

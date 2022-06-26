@@ -65,6 +65,7 @@ $app->configure('app');
 $app->configure('jwt');
 $app->configure('mail');
 $app->configure('fixer');
+$app->configure('database');
 
 /*
 |--------------------------------------------------------------------------
@@ -103,6 +104,7 @@ $app->register(Illuminate\Notifications\NotificationServiceProvider::class);
 $app->register(Illuminate\Mail\MailServiceProvider::class);
 $app->register(Illuminate\Auth\Passwords\PasswordResetServiceProvider::class);
 $app->register(STS\Fixer\FixerServiceProvider::class);
+$app->register(Illuminate\Redis\RedisServiceProvider::class);
 
 $app->alias('mail.manager', Illuminate\Mail\MailManager::class);
 $app->alias('mail.manager', Illuminate\Contracts\Mail\Factory::class);

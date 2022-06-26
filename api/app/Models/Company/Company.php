@@ -21,6 +21,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $updated_at
  * @method static CompanyFactory factory(...$parameters)
  * @method Builder|self filterByUser(string|int|User $user)
+ * @method Builder|self filterByIdentifier(string|int $identifier)
  * @method Builder|self isActive()
  */
 class Company extends Model
@@ -110,6 +111,22 @@ class Company extends Model
             $builder->whereHas('user', static function (Builder|User $builder) use ($user): void {
                 $builder->where('email', $user->email);
             });
+        }
+
+        return $builder;
+    }
+
+    /**
+     * @param Builder $builder
+     * @param string|int $identifier
+     * @return Builder
+     */
+    protected function scopeFilterByIdentifier(Builder $builder, string|int $identifier): Builder
+    {
+        if (is_numeric($identifier)) {
+            $builder->where('id', $identifier);
+        } else {
+            $builder->where('slug', $identifier);
         }
 
         return $builder;

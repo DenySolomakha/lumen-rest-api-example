@@ -22,7 +22,6 @@ class LanguageFactory extends Factory
         return [
             'name' => $this->faker->country,
             'code' => $this->faker->languageCode,
-            'is_active' => true,
         ];
     }
 }
