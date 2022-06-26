@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\ResetPasswordAction;
 use App\Http\Controllers\Auth\SignInAction;
 use App\Http\Controllers\Auth\SignOutAction;
 use App\Http\Controllers\Auth\SignUpAction;
+use App\Http\Controllers\Company\CompaniesAction;
 use App\Http\Controllers\Company\CompanyAction;
 use App\Http\Controllers\Company\CreateCompanyAction;
 use Illuminate\Support\Str;
@@ -30,7 +31,9 @@ $router->group(['prefix' => 'api'], function (Router $router): void {
     $router->patch('reset-password', ['as' => 'password.reset', 'uses' => ResetPasswordAction::class]);
 
     $router->group(['middleware' => 'auth:api'], function (Router $router): void {
-        $router->get('users/companies', ['as' => 'users.companies', 'uses' => CompanyAction::class]);
+        $router->get('users/companies', ['as' => 'users.companies', 'uses' => CompaniesAction::class]);
+        // Identifier as id or slug
+        $router->get('users/companies/{identifier}', ['as' => 'users.company', 'uses' => CompanyAction::class]);
         $router->post('users/companies', ['as' => 'create.users.companies', 'uses' => CreateCompanyAction::class]);
     });
 });

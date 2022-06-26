@@ -5,25 +5,27 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Company;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Company\CompanyResourceCollection;
+use App\Http\Resources\Company\CompanyResource;
 use App\Models\Company\Company;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 final class CompanyAction extends Controller
 {
     /**
-     * @param Request $request
+     * @param string $identifier
      * @return JsonResource
      */
-    public function __invoke(Request $request): JsonResource
+    public function __invoke(string $identifier): JsonResource
     {
         /** @var User $user */
         $user = auth()->user();
 
-        $companies = Company::query()->filterByUser($user)->isActive()->paginate();
+        $companies = Company::query()
+            ->filterByUser($user)
+            ->filterByIdentifier($identifier)
+            ->isActive()->firstOrFail();
 
-        return new CompanyResourceCollection($companies);
+        return new CompanyResource($companies);
     }
 }
