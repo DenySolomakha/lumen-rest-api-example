@@ -30,13 +30,13 @@ class TranslationKeyRule implements Rule
 
         foreach ($locales as $locale => $value) {
             if ($this->isLowercase($locale) === false) {
-                $this->message = sprintf('Translation locale "%s", must be in lowercase.', $locale);
+                $this->message = sprintf('Translation language "%s", must be in lowercase.', $locale);
 
                 return false;
             }
 
-            if ($this->localeExists($locale, $languages) === false) {
-                $this->message = sprintf('Translation locale "%s", does not supported.', $locale);
+            if ($this->languageExists($locale, $languages) === false) {
+                $this->message = sprintf('Translation language "%s", does not supported.', $locale);
 
                 return false;
             }
@@ -77,7 +77,7 @@ class TranslationKeyRule implements Rule
      * @param array $languages
      * @return bool
      */
-    private function localeExists(int|string $locale, array $languages): bool
+    private function languageExists(int|string $locale, array $languages): bool
     {
         return in_array($locale, $languages, true);
     }

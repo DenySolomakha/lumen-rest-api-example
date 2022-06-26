@@ -6,7 +6,6 @@ namespace App\Services\Company;
 
 use App\Models\Company\Company;
 use App\Models\Company\CompanyTranslation;
-use App\Models\Language;
 use App\Models\User;
 use Illuminate\Support\Collection;
 use Throwable;
@@ -28,7 +27,7 @@ final class CompanyService
         $translations = (new Collection($request['translations']))
             ->map(function (array $requestTranslation, string $locale): CompanyTranslation {
                 $translation = new CompanyTranslation();
-                $translation->language = $this->languageFindByCode($locale)?->code;
+                $translation->language = $locale;
                 $translation->title = $requestTranslation['title'];
                 $translation->description = $requestTranslation['description'] ?? '';
                 $translation->meta_title = $requestTranslation['metaTitle'] ?? null;
@@ -40,20 +39,5 @@ final class CompanyService
         $company->translations()->saveMany($translations);
 
         return Company::query()->filterByIdentifier($company->id)->isActive()->firstOrFail();
-    }
-
-    /**
-     * @param string $locale
-     * @return Language|null
-     */
-    private function languageFindByCode(string $locale): ?Language
-    {
-        return Language::query()->get()->filter(static function (Language $language) use ($locale): ?Language {
-            if ($language->code === $locale) {
-                return $language;
-            }
-
-            return null;
-        })->first();
     }
 }
