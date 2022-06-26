@@ -10,7 +10,7 @@ services:
       - ./:/var/www
       - ./.docker/nginx/logs:/var/log/nginx
     ports:
-      - "8080:80"
+      - "8083:80"
     depends_on:
       - api
 

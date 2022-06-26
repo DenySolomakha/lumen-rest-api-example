@@ -5,7 +5,7 @@ bootstrap:
 	make build
 	make start
 	make chmod-permissions
-	make artsan cmd="jwt:secret"
+	make artisan cmd="jwt:secret"
 	make artisan cmd="migrate:fresh --seed"
 
 # Build and up docker containers
