@@ -24,7 +24,8 @@ final class CompanyAction extends Controller
         $companies = Company::query()
             ->filterByUser($user)
             ->filterByIdentifier($identifier)
-            ->isActive()->firstOrFail();
+            ->isActive()
+            ->firstOrFail();
 
         return new CompanyResource($companies);
     }
