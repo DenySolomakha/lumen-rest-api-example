@@ -31,7 +31,7 @@ Composer version 2.3.7
 
 <br/>
 
-###### Third party packages:
+###### Dependencies
 - [php-open-source-saver/jwt-auth](https://github.com/PHP-Open-Source-Saver/jwt-auth)
 - [stechstudio/Laravel-PHP-CS-Fixer](https://github.com/stechstudio/Laravel-PHP-CS-Fixer)
 
