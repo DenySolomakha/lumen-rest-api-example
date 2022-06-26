@@ -25,15 +25,19 @@ Composer version 2.3.7
 * Use artisan with commands:
   `make artisan cmd="any artisan command"`
 
-**Application home page url:** [localhost::8085](http:://localhost::8080)
+**Application home page url:** [localhost::8083](http:://localhost::8083)
 
-**API url:** [localhost::8085/api](http:://localhost::8080/api)
+**API url:** [localhost::8083/api](http:://localhost::8083/api)
 
 <br/>
 
 ###### Third party packages:
 - [php-open-source-saver/jwt-auth](https://github.com/PHP-Open-Source-Saver/jwt-auth)
 - [stechstudio/Laravel-PHP-CS-Fixer](https://github.com/stechstudio/Laravel-PHP-CS-Fixer)
+
+### For testing end points
+For testing endpoints, I recommend using the [insomnia](https://insomnia.rest/) client or any other analogs such as [postman](https://www.postman.com/). 
+The insomnia collections file is located at the root of the project with the name **Insomnia_xxxx-xx-xx.json**
 
 ### NOTE
 
