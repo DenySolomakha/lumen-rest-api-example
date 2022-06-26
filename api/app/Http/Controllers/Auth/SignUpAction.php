@@ -10,6 +10,7 @@ use App\Http\Validators\Auth\SingUpValidator;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Throwable;
@@ -34,7 +35,7 @@ final class SignUpAction extends Controller
         $user->password = Hash::make($request->input('password'));
         $user->saveOrFail();
 
-        $user->token = auth()->attempt($request->only('email', 'password'));
+        $user->token = Auth::attempt($request->only('email', 'password'));
 
         return (new UserResource($user));
     }

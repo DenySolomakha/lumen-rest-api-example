@@ -19,10 +19,10 @@ final class CompaniesAction extends Controller
      */
     public function __invoke(Request $request): JsonResource
     {
-        /** @var User $user */
-        $user = auth()->user();
-
-        $companies = Company::query()->filterByUser($user)->isActive()->paginate();
+        $companies = Company::query()
+            ->filterByUser($request->attributes->get(User::class))
+            ->isActive()
+            ->paginate();
 
         return new CompanyResourceCollection($companies);
     }

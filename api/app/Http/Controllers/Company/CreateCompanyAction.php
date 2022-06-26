@@ -33,10 +33,7 @@ final class CreateCompanyAction extends Controller
     {
         $this->validateRequest($request);
 
-        /** @var User $user */
-        $user = auth()->user();
-
-        $company = $this->companyService->make($request->all(), $user);
+        $company = $this->companyService->make($request->all(), $request->attributes->get(User::class));
 
         return new CompanyResource($company);
     }

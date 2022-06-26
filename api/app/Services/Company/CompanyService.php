@@ -29,7 +29,7 @@ final class CompanyService
                 $translation = new CompanyTranslation();
                 $translation->language = $locale;
                 $translation->title = $requestTranslation['title'];
-                $translation->description = $requestTranslation['description'] ?? '';
+                $translation->description = $requestTranslation['description'];
                 $translation->meta_title = $requestTranslation['metaTitle'] ?? null;
                 $translation->meta_description = $requestTranslation['metaDescription'] ?? null;
 
