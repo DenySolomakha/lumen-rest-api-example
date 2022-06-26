@@ -26,7 +26,7 @@ class ForgotPasswordAction extends Controller
         $status = Password::sendResetLink($request->only('email'));
 
         return $status === Password::RESET_LINK_SENT ?
-            response()->json(['data' => 'Success.']) :
-            response()->json(['data' => 'Error.'], Response::HTTP_UNPROCESSABLE_ENTITY);
+            response()->json(['data' => 'Forgot password success.']) :
+            response()->json(['data' => 'Forgot password error.'], Response::HTTP_UNPROCESSABLE_ENTITY);
     }
 }
