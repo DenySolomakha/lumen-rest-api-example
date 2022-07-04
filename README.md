@@ -25,6 +25,10 @@ Composer version 2.3.7
 * Use artisan with commands:
   `make artisan cmd="any artisan command"`
 
+* Use test commands: <br/>
+  `make test` - run all tests <br/>
+  `make test TESTCOVARAGE=1` - run for generate coverage report
+
 **Application home page url:** [localhost::8083](http:://localhost::8083)
 
 **API url:** [localhost::8083/api](http:://localhost::8083/api)
