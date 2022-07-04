@@ -42,9 +42,12 @@ RUN apk add --no-cache icu-dev \
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --version=2.3.7 --filename=composer
 
-#RUN if [ "dev" = "dev" ] ; then apk add --no-cache $PHPIZE_DEPS \
-#&& pecl install xdebug-3.0.4  \
-#&& docker-php-ext-enable xdebug ; fi
+# TODO: xdebug configurate
+# https://bugs.php.net/bug.php?id=80608 not compatible with JIT
+# Install xdebug only for local environment
+RUN if [ "dev" = "dev" ] ; then apk add --no-cache $PHPIZE_DEPS \
+&& pecl install xdebug-3.1.3  \
+&& docker-php-ext-enable xdebug ; fi
 
 # Add user for laravel application
 RUN groupadd -g 1000 www
