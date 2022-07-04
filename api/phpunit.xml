@@ -5,8 +5,8 @@
          colors="true"
 >
     <testsuites>
-        <testsuite name="Application Test Suite">
-            <directory suffix="Test.php">./tests</directory>
+        <testsuite name="default">
+            <directory>./tests</directory>
         </testsuite>
     </testsuites>
     <php>
@@ -14,4 +14,9 @@
         <env name="CACHE_DRIVER" value="array"/>
         <env name="QUEUE_CONNECTION" value="sync"/>
     </php>
+    <coverage cacheDirectory="./data/tmp/.phpunit.cache/code-coverage" processUncoveredFiles="true">
+        <include>
+            <directory suffix=".php">app</directory>
+        </include>
+    </coverage>
 </phpunit>
