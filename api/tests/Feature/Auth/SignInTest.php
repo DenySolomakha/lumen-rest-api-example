@@ -13,20 +13,12 @@ class SignInTest extends TestCase
     /**
      * @return void
      */
-    protected function setUp(): void
-    {
-        parent::setUp();
-    }
-
-    /**
-     * @return void
-     */
     public function testSuccess(): void
     {
         /** @var User $user */
         $user = User::factory()->create();
 
-        $response = $this->post('/api/signIn', ['email' => $user->email, 'password' => 'Password123']);
+        $response = $this->post(route('signIn'), ['email' => $user->email, 'password' => 'Password123']);
 
         $response->seeJsonStructure([
             'data' => [
@@ -44,7 +36,7 @@ class SignInTest extends TestCase
      */
     public function testValidationErrors(): void
     {
-        $this->post('/api/signIn', ['email' => 'incorrect', 'password' => 'incorrect'])
+        $this->post(route('signIn'), ['email' => 'incorrect', 'password' => 'incorrect'])
             ->assertResponseStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
     }
 
@@ -53,7 +45,7 @@ class SignInTest extends TestCase
      */
     public function testInvalidCredentials(): void
     {
-        $this->post('/api/signIn', ['email' => 'example@mail.com', 'password' => 'Incorrect123'])
+        $this->post(route('signIn'), ['email' => 'example@mail.com', 'password' => 'Incorrect123'])
         ->assertResponseStatus(Response::HTTP_UNAUTHORIZED);
     }
 }
